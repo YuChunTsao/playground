@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="icon.svg" />
+    <title>A Comparison of ArcGIS GeoJSONLayer and Deck.gl GeoJsonLayer</title>
+
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+      }
+
+      .map-view {
+        float: left;
+        width: 50%;
+        height: 100%;
+      }
+
+      .file-information {
+        width: 100%;
+        z-index: 2;
+        background: white;
+        padding: 10px;
+      }
+
+      .view-information {
+        position: absolute;
+        z-index: 3;
+        background: white;
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid black;
+      }
+
+      .view-information > a {
+        color: blue;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      #view1-information {
+        left: 0;
+      }
+
+      #view2-information {
+        left: 50%;
+      }
+    </style>
+
+    <script src="https://unpkg.com/deck.gl@8.1.0/dist.min.js"></script>
+    <script src="https://unpkg.com/@deck.gl/geo-layers@8.1.0/dist.min.js"></script>
+    <script src="https://unpkg.com/@deck.gl/arcgis@8.1.0/dist.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.30/esri/themes/light/main.css"
+    />
+    <script src="https://js.arcgis.com/4.30/"></script>
+    <script type="module" crossorigin src="/arcgis-deckgl-geojson-comparison/assets/index-CyNipusR.js"></script>
+  </head>
+  <body>
+    <div style="position: absolute; z-index: 2; right: 0">
+      <div class="file-information" id="point_information">
+        <input type="checkbox" id="pointsLayer" checked />
+      </div>
+      <div class="file-information" id="linestring_information">
+        <input type="checkbox" id="linestringsLayer" />
+      </div>
+      <div class="file-information" id="polygon_information">
+        <input type="checkbox" id="polygonsLayer" />
+      </div>
+    </div>
+    <div id="view1Div" class="map-view">
+      <div id="view1-information" class="view-information">
+        <a
+          href="https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-GeoJSONLayer.html"
+          target="_blank"
+        >
+          ArcGIS GeoJSONLayer
+        </a>
+      </div>
+    </div>
+    <div id="view2Div" class="map-view">
+      <div id="view2-information" class="view-information">
+        <a
+          href="https://deck.gl/docs/api-reference/layers/geojson-layer"
+          target="_blank"
+        >
+          deck.gl GeoJsonLayer
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
