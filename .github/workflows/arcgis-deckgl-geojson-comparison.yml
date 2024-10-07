@@ -5,6 +5,7 @@ on:
       - dev
     paths:
       - 'arcgis-deckgl-geojson-comparison/**'
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
