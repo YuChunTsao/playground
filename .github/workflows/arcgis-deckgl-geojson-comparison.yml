@@ -10,6 +10,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 'arcgis-deckgl-geojson-comparison'
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
@@ -20,13 +23,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
-        working-directory: ./arcgis-deckgl-geojson-comparison
       - name: Install dependencies
         run: |
           cd arcgis-deckgl-geojson-comparison
           pnpm install
           pnpm run build
-        working-directory: ./arcgis-deckgl-geojson-comparison
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
