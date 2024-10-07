@@ -108,17 +108,17 @@
       let deckgl_polygon_layer = null
 
       window.onload = async () => {
-        setFileSizeAndDownloadLink(
+        setFeatureCountAndDownloadLink(
           POINT_URL,
           'point_information',
           'point.geojson',
         )
-        setFileSizeAndDownloadLink(
+        setFeatureCountAndDownloadLink(
           LINESTRING_URL,
           'linestring_information',
           'linestring.geojson',
         )
-        setFileSizeAndDownloadLink(
+        setFeatureCountAndDownloadLink(
           POLYGON_URL,
           'polygon_information',
           'polygon.geojson',
@@ -293,38 +293,32 @@
         })
       }
 
-      const getFileSize = async (url) => {
-        let fileSize = 0
-
+      const getFeatureCount = async (url) => {
         const response = await fetch(url)
-        const contentLength = response.headers.get('Content-Length')
-
-        if (contentLength) {
-          fileSize = contentLength / (1024 * 1024) // convert from bytes to MB
-        } else {
-          console.log('Content-Length header is not available')
-        }
-
-        fileSize = fileSize.toFixed(2)
-
-        return fileSize
+        const data = await response.json()
+        const count = data.features.length
+        return count
       }
 
-      const setFileSizeAndDownloadLink = async (url, elementId, filename) => {
-        getFileSize(url).then((size) => {
+      const setFeatureCountAndDownloadLink = async (
+        url,
+        elementId,
+        filename,
+      ) => {
+        getFeatureCount(url).then((count) => {
           // Create a href element for file name and allow download
           const a = document.createElement('a')
           a.href = url
           a.textContent = filename
           a.download = filename
 
-          const fileSize = document.createElement('a')
-          fileSize.textContent = ` (File size: ${size} MB)`
+          const numberOfFeatures = document.createElement('a')
+          numberOfFeatures.textContent = ` (Count: ${count})`
 
-          // Put file link and file size into the information div
+          // Put file link and features count into the information div
           const information = document.getElementById(elementId)
           information.appendChild(a)
-          information.appendChild(fileSize)
+          information.appendChild(numberOfFeatures)
         })
       }
 
