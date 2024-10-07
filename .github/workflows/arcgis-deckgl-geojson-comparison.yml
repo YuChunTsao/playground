@@ -23,6 +23,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
+          cache-dependency-path: './arcgis-deckgl-geojson-comparison'
       - name: Install dependencies
         run: |
           cd arcgis-deckgl-geojson-comparison
