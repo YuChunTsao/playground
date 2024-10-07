@@ -3,8 +3,14 @@
 ## Setup
 
 ```bash
-# npm install -g http-server
-http-server .
+pnpm install
+pnpm run dev
+```
+
+## Build
+
+```bash
+pnpm run build
 ```
 
 ## Issues
